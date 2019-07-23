@@ -53,6 +53,10 @@ export default {
       if (searchResults.length <= this.selectedIndex) {
         this.selectedIndex = -1;
       }
+
+      if (searchResults.length === 1) {
+        this.selectedIndex = 0;
+      }
       return searchResults;
     }
   },
@@ -74,8 +78,10 @@ export default {
       }
     },
     selectEnter() {
-      this.input = this.predictions[this.selectedIndex];
-      this.select();
+      if (this.predictions.length > 0) {
+        this.input = this.predictions[this.selectedIndex];
+        this.select();
+      }
     },
     selectClick() {
       this.input = event.target.innerText;
